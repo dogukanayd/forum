@@ -18,6 +18,8 @@ class Thread extends Model
     {
         return "/threads/{$this->channel->slug}/{$this->id}";
     }
+
+
     /**
      * A thread belongs to a creator.
      *
@@ -27,6 +29,8 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
     /**
      * A thread is assigned a channel.
      *
@@ -36,6 +40,8 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
+
     /**
      * A thread may have many replies.
      *
@@ -45,6 +51,8 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+
     /**
      * Add a reply to the thread.
      *
@@ -54,4 +62,11 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     }
+    
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
+
 }
