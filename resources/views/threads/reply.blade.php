@@ -9,12 +9,7 @@
                     said {{$reply->created_at->diffForHumans()}}...
                 </h5>
                 <div>
-                    <form action="/replies/{{ $reply->id }}/favorites" method="POST">
-                        {{csrf_field()}}
-                        <button class="btn btn-default" type="submit">
-                            {{ $reply->favorites_count }} {{str_plural('Favorite', $reply->favorites_count)}}
-                        </button>
-                    </form>
+                    <favorite :reply="{{$reply}}"></favorite>
                 </div>
             </div>
         </div>
